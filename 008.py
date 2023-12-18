@@ -1,16 +1,17 @@
 N = int(input())
 S = input()
 
-letters = 'atcoder'
-dic = {}
-for letter in letters:
-    dic[letter] = {}
-    for i, s in enumerate(S):
-        if s == letter:
-            dic[letter].add(i)
+atcoder = 'atcoder'
+M = len(atcoder)
+dp = [[0, 0, 0, 0, 0, 0, 0, 0] for _ in range(N+1)]
+dp[0][0] = 1
+for n in range(N):
+    for m in range(M):
+        dp[n+1][m] += dp[n][m]
+        if S[n] == atcoder[m]:
+            dp[n+1][m+1]+=dp[n][m]
+    dp[n+1][M] += dp[n][M]
+    for m in range(M+1): 
+        dp[n+1][m] %= 1e9+7
 
-i = 0
-j = 0
-while True:
-    if i in dic[letter[j]]
-    i += 1
+print(int(dp[N][7]))
